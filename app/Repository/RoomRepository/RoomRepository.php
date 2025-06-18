@@ -35,6 +35,13 @@ class RoomRepository implements RoomRepositoryInterface
 			;
 		}
 
+		if (!is_null($filter->status)) {
+			$repository
+				->where('status', ':status')
+				->setBindings(['status' => $filter->status])
+			;
+		}
+
 		return $repository->first();
 	}
 
@@ -46,6 +53,13 @@ class RoomRepository implements RoomRepositoryInterface
 			$repository
 				->where('number', ':number')
 				->setBindings(['number' => $filter->number])
+			;
+		}
+
+		if (!is_null($filter->status)) {
+			$repository
+				->where('status', ':status')
+				->setBindings(['status' => $filter->status])
 			;
 		}
 

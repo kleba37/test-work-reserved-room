@@ -14,5 +14,5 @@ Route::prefix('')->group(function () {
 
 
 Route::prefix('room')->group(function () {
-	Route::get('/list', [GetRoomListController::class]);
+	Route::get('/list', [GetRoomListController::class, 'index']);
 });
