@@ -80,7 +80,7 @@ composer-update:
 
 # Artisan commands
 artisan:
-	docker-compose exec app php artisan $(cmd)
+	docker-compose exec app php artisan $(filter-out $@,$(MAKECMDGOALS))
 
 artisan-key:
 	docker-compose exec app php artisan key:generate
