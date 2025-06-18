@@ -2,7 +2,7 @@
 
 namespace App\Filter\Room;
 
-class Filter extends abstractFilter
+class RoomFilter extends Filter
 {
 
 }
