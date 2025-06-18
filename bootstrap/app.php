@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->append([
 			EnsureFrontendRequestsAreStateful::class,
-	        SubstituteBindings::class
+//	        SubstituteBindings::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
