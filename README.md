@@ -65,8 +65,8 @@ PHP: 8.2+
 
 1. **Клонируйте репозиторий**:
    ```bash
-   git clone https://github.com/ваш-репозиторий.git
-   cd ваш-проект
+   git clone https://github.com/kleba37/test-work-reserved-room.git
+   cd test-work-reserved-room
 
 2. **Проект самодокументирован используйте make**:
     ```bash
