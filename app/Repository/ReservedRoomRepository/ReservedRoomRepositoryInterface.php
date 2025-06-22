@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repository\RoomRepository;
+namespace App\Repository\ReservedRoomRepository;
 
-use App\Filter\Room\Filter;
+use App\Filter\ReservedRoom\Filter;
 use App\Models\ReservedRoom;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
-interface RoomRepositoryInterface
+interface ReservedRoomRepositoryInterface
 {
 	public function findById(int $id): ReservedRoom;
 

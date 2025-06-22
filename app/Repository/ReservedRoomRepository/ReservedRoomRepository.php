@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Repository\RoomRepository;
+namespace App\Repository\ReservedRoomRepository;
 
-use App\Filter\Room\Filter;
+use App\Filter\ReservedRoom\Filter;
 use App\Models\ReservedRoom;
-use App\Models\Room;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
-class RoomRepository implements RoomRepositoryInterface
+class ReservedRoomRepository implements ReservedRoomRepositoryInterface
 {
 	public function __construct(private Builder $repository)
 	{
-		$this->repository = Room::query();
+		$this->repository = ReservedRoom::query();
 	}
 
 	public function findById(int $id): ReservedRoom
@@ -25,33 +24,26 @@ class RoomRepository implements RoomRepositoryInterface
 
 	private function getQueryBuilder(Filter $filter): Builder
 	{
-		$this->repository = Room::query();
+		$this->repository = ReservedRoom::query();
 
-		if (!is_null($filter->floor)) {
+		if (!is_null($filter->excludeRooms)) {
 			$this
 				->repository
-				->whereIn('floor', $filter->floor)
+				->whereNotIn('room_id', $filter->excludeRooms)
 			;
 		}
 
-		if (!is_null($filter->ids)) {
+		if (!is_null($filter->rooms)) {
 			$this
 				->repository
-				->whereIn('id', $filter->ids)
+				->whereIn('room', $filter->rooms)
 			;
 		}
 
-		if (!is_null($filter->excludeIds)) {
+		if (!is_null($filter->status)) {
 			$this
 				->repository
-				->whereNotIn('id', $filter->excludeIds)
-			;
-		}
-
-		if (!is_null($filter->countRoom)) {
-			$this
-				->repository
-				->where('count_room', 'in', $filter->countRoom)
+				->where('status', $filter->status)
 			;
 		}
 

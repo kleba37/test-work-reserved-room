@@ -4,10 +4,9 @@ namespace App\Filter\Room;
 
 abstract class Filter
 {
-	public ?int $number = null;
-	public ?bool $status = null;
-	public ?\DateTimeInterface $reservedAt = null;
-	public ?\DateTimeInterface $reservedTo = null;
-	public ?\DateTimeInterface $createAt = null;
-	public ?\DateTimeInterface $updateAt = null;
+	public ?array $ids = null;
+	public ?array $excludeIds = null;
+	public ?array $floor = null;
+	public ?array $countRoom = null;
+	public int $limit = 100;
 }

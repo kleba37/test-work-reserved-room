@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Api\Room;
 
-use App\Filter\Room\RoomFilter;
+use App\Filter\ReservedRoom\ReservedRoomFilter;
 use App\Http\Controllers\Controller;
-use App\Models\Room;
-use App\Repository\RoomRepository\RoomRepositoryInterface;
+use App\Repository\ReservedRoomRepository\ReservedRoomRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class GetRoomListController extends Controller
 {
-	public function index(RoomRepositoryInterface $roomRepository): JsonResponse
+	public function __invoke(ReservedRoomRepositoryInterface $roomRepository): JsonResponse
 	{
-		$filter = new RoomFilter();
+		$filter = new ReservedRoomFilter();
 		$filter->status = true;
 
 		$rooms = $roomRepository->findByFilter($filter);
