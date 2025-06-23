@@ -10,7 +10,7 @@ use App\Http\Requests\ReservedPeriodRequest;
 use App\Http\Resources\Room\RoomCollection;
 use App\Models\ReservedRoom;
 use App\Repository\ReservedRoomRepository\ReservedRoomRepositoryInterface;
-use App\Repository\RoomRepository\RoomRepository;
+use App\Repository\RoomRepository\RoomRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,7 +22,7 @@ class GetFreeRoomListController extends Controller
 	public function __invoke(
 		ReservedPeriodRequest $request,
 		ReservedRoomRepositoryInterface $reservedRoomRepository,
-		RoomRepository $roomRepository,
+		RoomRepositoryInterface $roomRepository,
 		JsonResourceHandlerInterface $jsonResourceHandler
 	): JsonResponse
     {
