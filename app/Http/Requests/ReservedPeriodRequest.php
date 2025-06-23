@@ -9,7 +9,7 @@ class ReservedPeriodRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     public function rules(): array
@@ -25,17 +25,16 @@ class ReservedPeriodRequest extends FormRequest
 	 */
 	public function toDTO(): ReservedPeriodDTO
 	{
-		$dateFrom = $this->input('dateFrom');
+		$dateFrom = !empty($this->input('dateFrom')) ?
+			new \DateTimeImmutable($this->input('dateFrom')) :
+			new \DateTimeImmutable()
+		;
 
-		if (empty($dateFrom)) {
-			$dateFrom = new \DateTimeImmutable();
-		}
 
-		$dateTo = $this->input('dateTo');
-
-		if (empty($dateTo)) {
-			$dateTo = new \DateTimeImmutable('+7 days');
-		}
+		$dateTo = !empty($this->input('dateTo')) ?
+			new \DateTimeImmutable($this->input('dateTo')) :
+			new \DateTimeImmutable('+7 days')
+		;
 
 		return new ReservedPeriodDTO(
 			dateFrom: $dateFrom,
